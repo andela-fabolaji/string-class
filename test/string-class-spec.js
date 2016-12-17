@@ -1,10 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var path = require('path');
-var STRING_EXTENSION = require(path.join(__dirname, '..', 'src/string-class'));
-
-Object.assign(String.prototype, STRING_EXTENSION);
+require('../src/string-class')
 
 describe('String Class Test Suite', function () {
 
@@ -88,7 +85,6 @@ describe('String Class Test Suite', function () {
     it('should return the currency representation of the string.', function () {
       expect(myNumString.toCurrency()).to.equal('1,111.11');
     });
-
     it('should return the string if it\'s not a string of numbers', function () {
       expect(myString.toCurrency()).to.equal('Andela');
     });

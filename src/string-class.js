@@ -18,7 +18,7 @@ var STRING_EXTENSION = {
    * @return {Bool}
    */
   hasVowels: function () {
-      return /[aeiou]/i.test(this);
+    return /[aeiou]/i.test(this);
   },
 
   /**
@@ -205,4 +205,4 @@ var STRING_EXTENSION = {
   }
 };
 
-module.exports = STRING_EXTENSION;
+Object.assign(String.prototype, STRING_EXTENSION);
