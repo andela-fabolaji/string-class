@@ -1,0 +1,113 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+.left-panel {
+  min-height: 50vh;
+  background: #002b38; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #002b38 0%, #027b93 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, #002b38 0%,#027b93 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #002b38 0%,#027b93 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002b38', endColorstr='#027b93',GradientType=1 );
+  color: #fff;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.left-panel h1 {
+  margin-top: 30px;
+}
+
+.left-panel span.subtitle {
+  line-height: 20px;
+  display: block;
+}
+
+.left-panel .form- {
+  margin-top: 30px;
+}
+
+/* right panel */
+.right-panel {
+  padding-top: 20px;
+}
+
+.string-method {
+  height: 30px;
+}
+
+.answer {
+  min-height: 100px;
+  overflow-wrap: break-word;
+  background: #fff;
+  border-radius: 5px;
+  border: 2px solid #efefef;
+  line-height: 50px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.display {
+  width: 70%;
+  height: 30px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.form-control, button {
+  height: 50px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  .left-panel, .right-panel {
+    height: 100vh;
+  }
+
+  .left-panel {
+    text-align: left;
+  }
+
+  /* right panel */
+  .right-panel {
+    padding-top: 0;
+  }
+
+  .right-container {
+    position: relative;
+    top: 30%;
+  }
+
+  .string-method {
+    height: 30px;
+    width: 70%;
+  }
+
+  .answer {
+    height: 100px;
+    line-height: 100px;
+    width: 90%;
+    background: #fff;
+    border-radius: 5px;
+    border: 2px solid #efefef;
+  }
+
+  .form-control, .btn {
+    width: 90%;
+  }
+}
+
+
+
+
+
+
+
+

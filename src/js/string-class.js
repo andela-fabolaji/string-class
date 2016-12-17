@@ -93,13 +93,13 @@ var STRING_EXTENSION = {
    * @return {String}
    */
   toCurrency: function () {
-    var left = this.split('.')[0].reverse()
+    var left = this.split('.')[0].replace(/[^0-9]/g, '').reverse()
       .replace(/(\d{3})/g, '$&,')
       .replace(/,$/, '')
       .reverse();
 
-    var right = this.split('.')[1] ? '.' + this.split('.')[1] : '';
-    return `${left}${right}`;
+    var right = this.split('.')[1] || '00'
+    return `${left}.${right}`;
   },
 
   /**
@@ -109,7 +109,7 @@ var STRING_EXTENSION = {
    * @return {Number}
    */
   fromCurrency: function () {
-    return parseFloat(this.replace(/,+/g, ''));
+    return this.replace(/,+/g, '');
   },
 
   /**
