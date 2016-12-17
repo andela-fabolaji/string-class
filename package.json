@@ -1,0 +1,29 @@
+{
+  "name": "string-class",
+  "version": "1.0.0",
+  "description": "An extension of the JS String Class",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-fabolaji/string-class.git"
+  },
+  "keywords": [
+    "string",
+    "extension"
+  ],
+  "author": "Abolaji Femi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-fabolaji/string-class/issues"
+  },
+  "homepage": "https://github.com/andela-fabolaji/string-class#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "codeclimate-test-reporter": "^0.4.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  }
+}
