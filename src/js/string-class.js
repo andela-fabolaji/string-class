@@ -1,6 +1,3 @@
-'use strict';
-
-
 /**
  * StringExtension Object
  *
@@ -9,15 +6,15 @@
  *
  * @author Abolaji Femi
  */
-var STRING_EXTENSION = {
+const STRING_EXTENSION = {
   /**
    * hasVowels method returns true if
    * the string in question contains one more
    * more vowel characters
    *
-   * @return {Bool}
+   * @return {Bool} string
    */
-  hasVowels: function () {
+  hasVowels() {
     return /[aeiou]/i.test(this);
   },
 
@@ -25,10 +22,10 @@ var STRING_EXTENSION = {
    * toUpper method returns the string with
    * all characters in upper case
    *
-   * @return {String}
+   * @return {String} string
    */
-  toUpper: function () {
-    return this.replace(/[a-z]/g, function (ch) {
+  toUpper() {
+    return this.replace(/[a-z]/g, (ch) => {
       return String.fromCharCode(ch.charCodeAt(0) - 32);
     });
   },
@@ -37,10 +34,10 @@ var STRING_EXTENSION = {
    * toLower method returns the string with
    * all characters in lower case
    *
-   * @return {String}
+   * @return {String} string
    */
-  toLower: function () {
-    return this.replace(/[A-Z]/g, function(ch) {
+  toLower() {
+    return this.replace(/[A-Z]/g, (ch) => {
       return String.fromCharCode(ch.charCodeAt(0) + 32);
     });
   },
@@ -49,9 +46,9 @@ var STRING_EXTENSION = {
    * ucFirst method returns the string with
    * the first character in upper case
    *
-   * @return {String}
+   * @return {String} string
    */
-  ucFirst: function () {
+  ucFirst() {
     return this.replace(this.charAt(0), this.charAt(0).toUpper());
   },
 
@@ -60,9 +57,9 @@ var STRING_EXTENSION = {
    * string is a question (ie. if it contains
    * the question mark symbol)
    *
-   * @return {Bool}
+   * @return {Bool} bool
    */
-  isQuestion: function () {
+  isQuestion() {
     return /\?$/.test(this);
   },
 
@@ -70,9 +67,9 @@ var STRING_EXTENSION = {
    * words method returns a list of words in the
    * string as an array
    *
-   * @return {Object}
+   * @return {Object} array
    */
-  words: function () {
+  words() {
     return this.match(/\w+/g);
   },
 
@@ -80,9 +77,9 @@ var STRING_EXTENSION = {
    * wordCount method returns the number of
    * words in the string
    *
-   * @return {Int}
+   * @return {Int} number
    */
-  wordCount: function () {
+  wordCount() {
     return this.words().length;
   },
 
@@ -90,15 +87,15 @@ var STRING_EXTENSION = {
    * toCurrency method returns the currency
    * representation of the string
    *
-   * @return {String}
+   * @return {String} string
    */
-  toCurrency: function () {
-    var left = this.split('.')[0].replace(/[^0-9]/g, '').reverse()
+  toCurrency() {
+    const left = this.split('.')[0].replace(/[^0-9]/g, '').reverse()
       .replace(/(\d{3})/g, '$&,')
       .replace(/,$/, '')
       .reverse();
 
-    var right = this.split('.')[1] || '00'
+    const right = this.split('.')[1] || '00';
     return `${left}.${right}`;
   },
 
@@ -106,9 +103,9 @@ var STRING_EXTENSION = {
    * fromCurrency method returns the number
    * representation of the string
    *
-   * @return {Number}
+   * @return {Number} number
    */
-  fromCurrency: function () {
+  fromCurrency() {
     return this.replace(/,+/g, '');
   },
 
@@ -116,10 +113,10 @@ var STRING_EXTENSION = {
    * inverseCase method returns each letter of the
    * string as an inverse of its current case
    *
-   * @return {String}
+   * @return {String} string
    */
-  inverseCase: function () {
-    return this.replace(/[a-zA-Z]/g, function(ch) {
+  inverseCase() {
+    return this.replace(/[a-zA-Z]/g, (ch) => {
       return /[a-z]/.test(ch) ? ch.toUpper() : ch.toLower();
     });
   },
@@ -128,10 +125,10 @@ var STRING_EXTENSION = {
    * alternatingCase method returns each letter of the
    * string in alternating cases
    *
-   * @return {String}
+   * @return {String} string
    */
-  alternatingCase: function () {
-    return this.replace(/[a-zA-Z]/g, function(ch, index) {
+  alternatingCase() {
+    return this.replace(/[a-zA-Z]/g, (ch, index) => {
       return index % 2 === 0 ? ch.toLower() : ch.toUpper();
     });
   },
@@ -140,10 +137,10 @@ var STRING_EXTENSION = {
    * getMiddle method returns the middle character(s)
    * of the string
    *
-   * @return {String}
+   * @return {String} string
    */
-  getMiddle: function () {
-    var midpoint = Math.floor(this.length / 2);
+  getMiddle() {
+    const midpoint = Math.floor(this.length / 2);
 
     return this.length % 2 === 0 ? this.slice(midpoint - 1, midpoint + 1)
       : this[midpoint];
@@ -153,10 +150,10 @@ var STRING_EXTENSION = {
    * numberWords method returns the string
    * of numbers in words
    *
-   * @return {String}
+   * @return {String} string
    */
-  numberWords: function () {
-    var numWords = {
+  numberWords() {
+    const numWords = {
       0: 'zero',
       1: 'one',
       2: 'two',
@@ -169,8 +166,8 @@ var STRING_EXTENSION = {
       9: 'nine'
     };
 
-    return this.replace(/\d/g, function(ch) {
-      return numWords[ch] + ' ';
+    return this.replace(/\d/g, (ch) => {
+      return `${numWords[ch]} `;
     }).trim();
   },
 
@@ -178,9 +175,9 @@ var STRING_EXTENSION = {
    * isDigit method returns true if the
    * string is a single digit
    *
-   * @return {Bool}
+   * @return {Bool} bool
    */
-  isDigit: function () {
+  isDigit() {
     return /^\d$/.test(this);
   },
 
@@ -188,9 +185,9 @@ var STRING_EXTENSION = {
    * doubleCheck method returns true is the string
    * contains double characters.
    *
-   * @return {Bool}
+   * @return {Bool} boolean
    */
-  doubleCheck: function () {
+  doubleCheck() {
     return /(.)\1/.test(this);
   },
 
@@ -198,9 +195,9 @@ var STRING_EXTENSION = {
    * reverse method returns the string
    * in a reverse order
    *
-   * @return {String}
+   * @return {String} string
    */
-  reverse: function () {
+  reverse() {
     return this.split('').reverse().join('');
   }
 };
