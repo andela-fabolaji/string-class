@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-require('../src/string-class')
+require('../src/js/string-class')
 
 describe('String Class Test Suite', function () {
 
@@ -79,23 +79,22 @@ describe('String Class Test Suite', function () {
 
   // toCurrency test suite
   describe('#toCurrency', function () {
-    var myNumString = '1111.11';
-    var myString = 'Andela';
+    var myNum = ['1234', '9876543.21'];
 
     it('should return the currency representation of the string.', function () {
-      expect(myNumString.toCurrency()).to.equal('1,111.11');
+      expect(myNum[0].toCurrency()).to.equal('1,234.00');
     });
-    it('should return the string if it\'s not a string of numbers', function () {
-      expect(myString.toCurrency()).to.equal('Andela');
+    it('should return the currency representation of the string.', function () {
+      expect(myNum[1].toCurrency()).to.equal('9,876,543.21');
     });
   });
 
   // fromCurrency test suite
   describe('#fromCurrency', function () {
-    var myString = '1,111.11';
+    var myNum = '1,111.11';
 
     it('should return a number representation of the currency string.', function () {
-      expect(myString.fromCurrency()).to.equal(1111.11);
+      expect(myNum.fromCurrency()).to.equal('1111.11');
     });
   });
 
