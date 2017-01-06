@@ -4,51 +4,57 @@ require('../src/js/string-class');
 describe('String Class Test Suite', () => {
   // hasVowels test suite
   describe('#hasVowels', () => {
+    const stringWithVowels = 'This has vowels';
+    const stringWithoutVowels = 'cry dry fly';
     it('should return true if the string contains vowels.', () => {
-      expect('This has vowels'.hasVowels()).to.be.true;
+      expect(stringWithVowels.hasVowels()).to.equal(true);
     });
     it('should return false if the string does not contain vowels.', () => {
-      expect('cry dry fly'.hasVowels()).to.be.false;
+      expect(stringWithoutVowels.hasVowels()).to.equal(false);
     });
   });
 
   // toUpper test suite
   describe('#toUpper', () => {
+    const stringFirst = 'andela';
+    const stringSecond = 'MiXeD CasEs';
     it('should return lower case string in question but with all characters in upper cases.', () => {
-      expect('andela'.toUpper()).to.equal('ANDELA');
+      expect(stringFirst.toUpper()).to.equal('ANDELA');
     });
     it('should return mixed case string in question but with all characters in upper cases.', () => {
-      expect('MIXed Cases'.toUpper()).to.equal('MIXED CASES');
+      expect(stringSecond.toUpper()).to.equal('MIXED CASES');
     });
   });
 
   // toLower test suite
   describe('#toLower', () => {
+    const stringA = 'ANDELA IS AWESOME';
     it('should return upper case string in question but with all characters in lower cases.', () => {
-      expect('ANDELA IS AWESOME'.toLower()).to.equal('andela is awesome');
-    });
-    it('should return mixed case string in question but with all characters in lower cases.', () => {
-      expect('anDeLa iS aWesoME'.toLower()).to.equal('andela is awesome');
+      expect(stringA.toLower()).to.equal('andela is awesome');
     });
   });
 
   // ucFirst test suite
   describe('#ucFirst', () => {
+    const stringA = 'tia';
+    const stringB = 'andela is awesome';
     it('should return the string in question but change the First Character to an Upper case.', () => {
-      expect('tia'.ucFirst()).to.equal('Tia');
+      expect(stringA.ucFirst()).to.equal('Tia');
     });
     it('should return the string(of words) in question but change the First Character to an Upper case.', () => {
-      expect('andela is awesome'.ucFirst()).to.equal('Andela is awesome');
+      expect(stringB.ucFirst()).to.equal('Andela is awesome');
     });
   });
 
   // isQuestion test suite
   describe('#isQuestion', () => {
+    const stringA = 'How are you?';
+    const stringB = 'How are you? today';
     it('should return true if the string is a question (ending with a question mark).', () => {
-      expect('How are you?'.isQuestion()).to.be.true;
+      expect(stringA.isQuestion()).to.equal(true);
     });
     it('should return false if the string does not end with a question mark.', () => {
-      expect('How are you? today'.isQuestion()).to.to.be.false;
+      expect(stringB.isQuestion()).to.to.equal(false);
     });
   });
 
@@ -56,7 +62,6 @@ describe('String Class Test Suite', () => {
   describe('#words', () => {
     const myString = 'Andela-is-awesome.';
     const listOfWords = myString.words();
-
     it('should return an array of words', () => {
       expect(listOfWords).to.be.an('array');
     });
@@ -68,7 +73,6 @@ describe('String Class Test Suite', () => {
   // wordCount test suite
   describe('#wordCount', () => {
     const myString = 'Simple String';
-
     it('should return the number of words in the string.', () => {
       expect(myString.wordCount()).to.equal(2);
     });
@@ -76,29 +80,39 @@ describe('String Class Test Suite', () => {
 
   // toCurrency test suite
   describe('#toCurrency', () => {
-    const myNum = ['1234', '9876543.21'];
-
+    const numA = '1234.00';
+    const numB = '9876543.21';
+    const numC = 'a123456.00';
     it('should return the currency representation of the string.', () => {
-      expect(myNum[0].toCurrency()).to.equal('1,234.00');
+      expect(numA.toCurrency()).to.equal('1,234.00');
     });
     it('should return the currency representation of the string.', () => {
-      expect(myNum[1].toCurrency()).to.equal('9,876,543.21');
+      expect(numB.toCurrency()).to.equal('9,876,543.21');
+    });
+    it('should return an error message if string contains alphabets.', () => {
+      expect(numC.toCurrency()).to.equal('Error: Invalid input');
     });
   });
 
   // fromCurrency test suite
   describe('#fromCurrency', () => {
-    const myNum = '1,111.11';
-
+    const numA = '1,111.11';
+    const numB = 'a,123,456.00';
+    const numC = '1.,234,.567.00';
     it('should return a number representation of the currency string.', () => {
-      expect(myNum.fromCurrency()).to.equal('1111.11');
+      expect(numA.fromCurrency()).to.equal(1111.11);
+    });
+    it('should return an error message if string contains alphabets.', () => {
+      expect(numB.fromCurrency()).to.equal('Error: Invalid input');
+    });
+    it('should return an error message if string is not well constructed', () => {
+      expect(numC.fromCurrency()).to.equal('Error: Invalid input');
     });
   });
 
   // inverseCase test suite
   describe('#inverseCase', () => {
     const myString = 'This is TIA';
-
     it('should return each letter of the string as an inverse of its current case.', () => {
       expect(myString.inverseCase()).to.equal('tHIS IS tia');
     });
@@ -107,7 +121,6 @@ describe('String Class Test Suite', () => {
   // alternatingCase test suite
   describe('#alternatingCase', () => {
     const myString = 'Alternating';
-
     it('should return each letter of the string in alternating cases.', () => {
       expect(myString.alternatingCase()).to.equal('aLtErNaTiNg');
     });
@@ -117,7 +130,6 @@ describe('String Class Test Suite', () => {
   describe('#getMiddle', () => {
     const myOddString = 'Mid';
     const myEvenString = 'Midpoint';
-
     it('should return the middle character(s) in the string(string length odd).', () => {
       expect(myOddString.getMiddle()).to.equal('i');
     });
@@ -128,51 +140,45 @@ describe('String Class Test Suite', () => {
 
   // numberWords test suite
   describe('#numberWords', () => {
-    const myString = '247';
-    const myString2 = 'nine 11'
-
+    const numA = '247';
+    const numB = 'nine 11';
     it('should return the number in words.', () => {
-      expect(myString.numberWords()).to.equal('two four seven');
+      expect(numA.numberWords()).to.equal('two four seven');
     });
-    it('should return only number in words if string contains alphabets', () => {
-      expect(myString2.numberWords()).to.equal('nine one one');
+    it('should return an error message if string contains alphabets', () => {
+      expect(numB.numberWords()).to.equal('Error: Invalid input');
     });
   });
 
   // isDigit test suite
   describe('#isDigit', () => {
-    const myString = '3';
-    const myDoubleString = '33';
-
+    const numA = '3';
+    const numB = '33';
+    const numC = 'a';
     it('should return true if the string is a digit (one number).', () => {
-      expect(myString.isDigit()).to.be.true;
+      expect(numA.isDigit()).to.equal(true);
     });
     it('should return false if the string is not a digit (two+ numbers).', () => {
-      expect(myDoubleString.isDigit()).to.to.be.false;
+      expect(numB.isDigit()).to.equal(false);
+    });
+    it('should return an error message if string contains alphabets', () => {
+      expect(numC.isDigit()).to.equal('Error: Invalid input');
     });
   });
 
   // doubleCheck test suite
   describe('#doubleCheck', () => {
-    const myDoubleString = 'aa'
+    const myDoubleString = 'aa';
     const myDoubleStringWord = 'a!!bbc';
     const notDoubleString = 'aba';
-
     it('should return true if the string contains double successive characters.', () => {
-      expect(myDoubleString.doubleCheck()).to.be.true;
+      expect(myDoubleString.doubleCheck()).to.equal(true);
     });
     it('should return true if the string contains double successive characters in a word.', () => {
-      expect(myDoubleStringWord.doubleCheck()).to.be.true;
+      expect(myDoubleStringWord.doubleCheck()).to.equal(true);
     });
     it('should return false if the string does not contain double successive characters.', () => {
-      expect(notDoubleString.doubleCheck()).to.to.be.false;
-    });
-  });
-
-  // reverse test suite
-  describe('#reverse', () => {
-    it('should return the string in a reverse order', () => {
-      expect('backward string'.reverse()).to.equal('gnirts drawkcab');
+      expect(notDoubleString.doubleCheck()).to.to.equal(false);
     });
   });
 });
