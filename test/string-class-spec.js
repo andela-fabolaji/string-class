@@ -145,8 +145,8 @@ describe('String Class Test Suite', () => {
     it('should return the number in words.', () => {
       expect(numA.numberWords()).to.equal('two four seven');
     });
-    it('should return an error message if string contains alphabets', () => {
-      expect(numB.numberWords()).to.equal('Error: Invalid input');
+    it('should return number in words if string contains alphabets', () => {
+      expect(numB.numberWords()).to.equal('nine one one');
     });
   });
 
@@ -154,15 +154,11 @@ describe('String Class Test Suite', () => {
   describe('#isDigit', () => {
     const numA = '3';
     const numB = '33';
-    const numC = 'a';
     it('should return true if the string is a digit (one number).', () => {
       expect(numA.isDigit()).to.equal(true);
     });
     it('should return false if the string is not a digit (two+ numbers).', () => {
       expect(numB.isDigit()).to.equal(false);
-    });
-    it('should return an error message if string contains alphabets', () => {
-      expect(numC.isDigit()).to.equal('Error: Invalid input');
     });
   });
 
@@ -170,7 +166,7 @@ describe('String Class Test Suite', () => {
   describe('#doubleCheck', () => {
     const myDoubleString = 'aa';
     const myDoubleStringWord = 'a!!bbc';
-    const notDoubleString = 'aba';
+    const notDoubleString = 'abab';
     it('should return true if the string contains double successive characters.', () => {
       expect(myDoubleString.doubleCheck()).to.equal(true);
     });

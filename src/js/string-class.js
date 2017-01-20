@@ -121,8 +121,9 @@ const STRING_EXTENSION = {
    */
   inverseCase() {
     return this.replace(/[a-zA-Z]/g, (character) => {
-      if (/[a-z]/.test(character)) return character.toUpper();
-      return character.toLower();
+      return /[a-z]/.test(character)
+        ? character.toUpper()
+        : character.toLower();
     });
   },
 
@@ -135,8 +136,7 @@ const STRING_EXTENSION = {
    */
   alternatingCase() {
     return this.replace(/[a-zA-Z]/g, (character, index) => {
-      if (index % 2 === 0) return character.toLower();
-      return character.toUpper();
+      return index % 2 === 0 ? character.toLower() : character.toUpper();
     });
   },
 
@@ -162,23 +162,11 @@ const STRING_EXTENSION = {
    * @return {String} string
    */
   numberWords() {
-    if (/[^0-9]/g.test(this)) return 'Error: Invalid input';
-    const numWords = [
-      'zero',
-      'one',
-      'two',
-      'three',
-      'four',
-      'five',
-      'six',
-      'seven',
-      'eight',
-      'nine'
-    ];
+    const numWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six',
+      'seven', 'eight', 'nine'];
 
-    return this.replace(/\d/g, (character) => {
-      return `${numWords[character]} `;
-    }).trim();
+    return this.replace(/\d/g, (digit) => { return `${numWords[digit]} `; })
+    .trim();
   },
 
   /**
@@ -189,7 +177,6 @@ const STRING_EXTENSION = {
    * @return {Bool} boolean
    */
   isDigit() {
-    if (/[^0-9]/g.test(this)) return 'Error: Invalid input';
     return /^\d$/.test(this);
   },
 
