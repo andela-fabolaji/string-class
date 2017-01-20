@@ -8,64 +8,68 @@
  */
 const STRING_EXTENSION = {
   /**
-   * hasVowels method returns true if
-   * the string in question contains one more
-   * more vowel characters
+   * hasVowels
    *
-   * @return {Bool} string
+   * Checks if the string contains at least one vowel character
+   *
+   * @return {Bool} boolean
    */
   hasVowels() {
     return /[aeiou]/i.test(this);
   },
 
   /**
-   * toUpper method returns the string with
-   * all characters in upper case
+   * toUpper
+   *
+   * transforms the string to uppercase characters
    *
    * @return {String} string
    */
   toUpper() {
-    return this.replace(/[a-z]/g, (ch) => {
-      return String.fromCharCode(ch.charCodeAt(0) - 32);
+    return this.replace(/[a-z]/g, (character) => {
+      return String.fromCharCode(character.charCodeAt() - 32);
     });
   },
 
   /**
-   * toLower method returns the string with
-   * all characters in lower case
+   * toLower
+   *
+   * transforms the string to lowercase characters
    *
    * @return {String} string
    */
   toLower() {
-    return this.replace(/[A-Z]/g, (ch) => {
-      return String.fromCharCode(ch.charCodeAt(0) + 32);
+    return this.replace(/[A-Z]/g, (character) => {
+      return String.fromCharCode(character.charCodeAt() + 32);
     });
   },
 
   /**
-   * ucFirst method returns the string with
-   * the first character in upper case
+   * ucFirst
+   *
+   * transforms only the first character of the string to uppercase
    *
    * @return {String} string
    */
   ucFirst() {
-    return this.replace(this.charAt(0), this.charAt(0).toUpper());
+    return this.replace(this[0], this[0].toUpper());
   },
 
   /**
-   * isQuestion method returns true if the
-   * string is a question (ie. if it contains
-   * the question mark symbol)
+   * isQuestion
    *
-   * @return {Bool} bool
+   * checks if the string ends with a question mark
+   *
+   * @return {Bool} boolean
    */
   isQuestion() {
     return /\?$/.test(this);
   },
 
   /**
-   * words method returns a list of words in the
-   * string as an array
+   * words
+   *
+   * returns a list of words in the string
    *
    * @return {Object} array
    */
@@ -74,68 +78,72 @@ const STRING_EXTENSION = {
   },
 
   /**
-   * wordCount method returns the number of
-   * words in the string
+   * wordCount
    *
-   * @return {Int} number
+   * returns the total number of words in the string
+   *
+   * @return {Int} integer
    */
   wordCount() {
     return this.words().length;
   },
 
   /**
-   * toCurrency method returns the currency
-   * representation of the string
+   * toCurrency
    *
-   * @return {String} string
+   * returns the currency representation of the string
+   *
+   * @return {String} stirng
    */
   toCurrency() {
-    const left = this.split('.')[0].replace(/[^0-9]/g, '').reverse()
-      .replace(/(\d{3})/g, '$&,')
-      .replace(/,$/, '')
-      .reverse();
-
-    const right = this.split('.')[1] || '00';
-    return `${left}.${right}`;
+    return Number(this)
+      ? Number(this).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+      : 'Error: Invalid input';
   },
 
   /**
-   * fromCurrency method returns the number
-   * representation of the string
+   * fromCurrency
+   *
+   * returns the number representation of the string
    *
    * @return {Number} number
    */
   fromCurrency() {
-    return this.replace(/,+/g, '');
+    return Number(this.replace(/,/g, '')) || 'Error: Invalid input';
   },
 
   /**
-   * inverseCase method returns each letter of the
-   * string as an inverse of its current case
+   * inverseCase
+   *
+   * returns each letter of the string as an inverse of its current case
    *
    * @return {String} string
    */
   inverseCase() {
-    return this.replace(/[a-zA-Z]/g, (ch) => {
-      return /[a-z]/.test(ch) ? ch.toUpper() : ch.toLower();
+    return this.replace(/[a-zA-Z]/g, (character) => {
+      return /[a-z]/.test(character)
+        ? character.toUpper()
+        : character.toLower();
     });
   },
 
   /**
-   * alternatingCase method returns each letter of the
-   * string in alternating cases
+   * alternatingCase
+   *
+   * returns each letter of the string in alternating cases
    *
    * @return {String} string
    */
   alternatingCase() {
-    return this.replace(/[a-zA-Z]/g, (ch, index) => {
-      return index % 2 === 0 ? ch.toLower() : ch.toUpper();
+    return this.replace(/[a-zA-Z]/g, (character, index) => {
+      return index % 2 === 0 ? character.toLower() : character.toUpper();
     });
   },
 
   /**
-   * getMiddle method returns the middle character(s)
-   * of the string
+   * getMiddle
+   *
+   * returns the middle character(s) of the string
    *
    * @return {String} string
    */
@@ -147,59 +155,41 @@ const STRING_EXTENSION = {
   },
 
   /**
-   * numberWords method returns the string
-   * of numbers in words
+   * numberWords
+   *
+   * returns the string of numbers in words
    *
    * @return {String} string
    */
   numberWords() {
-    const numWords = {
-      0: 'zero',
-      1: 'one',
-      2: 'two',
-      3: 'three',
-      4: 'four',
-      5: 'five',
-      6: 'six',
-      7: 'seven',
-      8: 'eight',
-      9: 'nine'
-    };
+    const numWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six',
+      'seven', 'eight', 'nine'];
 
-    return this.replace(/\d/g, (ch) => {
-      return `${numWords[ch]} `;
-    }).trim();
+    return this.replace(/\d/g, (digit) => { return `${numWords[digit]} `; })
+    .trim();
   },
 
   /**
-   * isDigit method returns true if the
-   * string is a single digit
+   * isDigit
    *
-   * @return {Bool} bool
+   * checks if the string is a single digit
+   *
+   * @return {Bool} boolean
    */
   isDigit() {
     return /^\d$/.test(this);
   },
 
   /**
-   * doubleCheck method returns true is the string
-   * contains double characters.
+   * doubleCheck
+   *
+   * checks if the string contains double occurence of a character
    *
    * @return {Bool} boolean
    */
   doubleCheck() {
     return /(.)\1/.test(this);
   },
-
-  /**
-   * reverse method returns the string
-   * in a reverse order
-   *
-   * @return {String} string
-   */
-  reverse() {
-    return this.split('').reverse().join('');
-  }
 };
 
 Object.assign(String.prototype, STRING_EXTENSION);
