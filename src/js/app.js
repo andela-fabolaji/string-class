@@ -1,18 +1,14 @@
-  angular.module('StringExtension', [])
-    .controller('MainController', function () {
-      this.stringMethods = Object.keys(STRING_EXTENSION);
-      this.response = '';
-      this.evaluate = function (inputString) {
-        const stringMethod = document.getElementById('stringMethod').value;
-        const display = document.getElementById('display');
-        let currentFunc = '';
+angular.module('StringExtension', [])
+  .controller('MainController', ['$scope', ($scope) => {
+    $scope.stringMethods = Object.keys(STRING_EXTENSION);
+    $scope.response = '';
+    $scope.evaluate = () => {
+      const stringMethod = document.querySelector('#stringMethod').value;
+      const display = document.querySelector('#display');
+      const inputString = document.querySelector('#inputString').value;
+      const currentFunc = `'${inputString}'.${stringMethod}( )`;
 
-        if (!inputString) {
-          this.response = 'Please insert a string to evaluate.';
-        } else {
-          currentFunc = `'${inputString}'.${stringMethod}( )`;
-          this.response = inputString[stringMethod]();
-        }
-        display.innerHTML = currentFunc;
-      };
-    });
+      $scope.response = inputString[stringMethod]();
+      display.innerHTML = currentFunc;
+    };
+  }]);
