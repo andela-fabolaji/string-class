@@ -165,8 +165,8 @@ const STRING_EXTENSION = {
     const numWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six',
       'seven', 'eight', 'nine'];
 
-    return this.replace(/\d/g, (digit) => { return `${numWords[digit]} `; })
-    .trim();
+    return this.replace(/\d/g, digit => `${numWords[digit]} `)
+               .trim();
   },
 
   /**
@@ -188,7 +188,7 @@ const STRING_EXTENSION = {
    * @return {Bool} boolean
    */
   doubleCheck() {
-    return /(.)\1/.test(this);
+    return /(.)+\1/.test(this);
   },
 };
 
